@@ -1,0 +1,43 @@
+// **************************************************************************
+// JsonSerializableGenerator
+// **************************************************************************
+
+ArticleModel _$ArticleModelFromJson(Map<String, dynamic> json) {
+  return ArticleModel()
+    ..id = json['id'] as int
+    ..title = json['title'] as String
+    ..url = json['url'] as String
+    ..description = json['description'] as String
+    ..author = json['author'] as String
+    ..blogApp = json['blogApp'] as String
+    ..avatar = json['avatar'] as String
+    ..postDate = json['postDate'] == null
+        ? null
+        : DateTime.parse(json['postDate'] as String)
+    ..viewCount = json['viewCount'] as int
+    ..commentCount = json['commentCount'] as int
+    ..diggCount = json['diggCount'] as int
+    ..nextRefreshTime = json['nextRefreshTime'] == null
+        ? null
+        : DateTime.parse(json['nextRefreshTime'] as String)
+    ..body = json['body'] as String
+    ..dateDisplay = json['dateDisplay'] as String;
+}
+
+Map<String, dynamic> _$ArticleModelToJson(ArticleModel instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'title': instance.title,
+      'url': instance.url,
+      'description': instance.description,
+      'author': instance.author,
+      'blogApp': instance.blogApp,
+      'avatar': instance.avatar,
+      'postDate': instance.postDate?.toIso8601String(),
+      'viewCount': instance.viewCount,
+      'commentCount': instance.commentCount,
+      'diggCount': instance.diggCount,
+      'nextRefreshTime': instance.nextRefreshTime?.toIso8601String(),
+      'body': instance.body,
+      'dateDisplay': instance.dateDisplay
+    };
