@@ -16,9 +16,8 @@ class _HomeBlogState extends State<HomeBlogPage> {
   bool isLoading = false; //是否正在加载数据
 
   Future<List<ArticleModel>> fakeRequest() async {
-    print("滑动到了最底部的page:${this.page}");
     var modules = await BlogService().getHomeArticles(this.page, 10);
-    return Future.delayed(Duration(seconds: 1), () {
+    return Future.delayed(Duration(milliseconds: 300), () {
       return modules;
     });
   }
@@ -28,7 +27,7 @@ class _HomeBlogState extends State<HomeBlogPage> {
   */
  Future<void> _onRefresh() async {
     var modules = await BlogService().getHomeArticles(1, 10);
-    await Future.delayed(Duration(seconds: 1), () {
+    await Future.delayed(Duration(milliseconds: 300), () {
       setState(() {
         this.modules = modules;
       });
@@ -138,7 +137,6 @@ class _HomeBlogState extends State<HomeBlogPage> {
     _scrollController.addListener(() {
       if (_scrollController.position.pixels ==
           _scrollController.position.maxScrollExtent) {
-        print('滑动到了最底部');
         _getMoreData();
       }
     });

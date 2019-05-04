@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../../../model/article_model.dart';
 import 'home_knowledge_detail_page.dart';
+import '.././../../utils/date_util.dart';
 
 class HomeKnowledgeListItem extends StatelessWidget {
   final String title;
@@ -9,7 +10,7 @@ class HomeKnowledgeListItem extends StatelessWidget {
   const HomeKnowledgeListItem({Key key, this.article, this.title})
       : super(key: key);
 
-  Widget infoItem(IconData icon, String info) {
+  Widget infoItem(IconData icon, String info,String tip) {
     return Row(
       children: <Widget>[
         Icon(
@@ -23,6 +24,10 @@ class HomeKnowledgeListItem extends StatelessWidget {
         Text(
           info,
           style: TextStyle(fontSize: 16.0, color: Colors.grey),
+        ),
+        Text(
+          tip,
+          style: TextStyle(fontSize: 16.0, color: Colors.grey),
         )
       ],
     );
@@ -31,7 +36,8 @@ class HomeKnowledgeListItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-        child: Container(
+      elevation: 10.0,  //设置阴影
+      child: Container(
       padding: EdgeInsets.all(10.0),
       color: Colors.white,
       child: Column(
@@ -76,22 +82,30 @@ class HomeKnowledgeListItem extends StatelessWidget {
           SizedBox(
             height: 8.0,
           ),
-          Text(
-            this.article.dateAdded.toString(), //时间
-            style: TextStyle(fontSize: 16, color: Colors.black87),
-          ),
-          SizedBox(
-            height: 8.0,
-          ),
           Row(
             children: <Widget>[
-              infoItem(
-                  Icons.navigation, this.article.diggCount.toString()), //推荐
-              SizedBox(
-                width: 10.0,
+              Expanded(
+                flex: 4,
+                child: Text(
+                    DateUtil.getDateStrByDateTime(
+                      this.article.dateAdded,
+                      format: DateFormat.YEAR_MONTH_DAY_HOUR_MINUTE
+                    ),//时间
+                   style: TextStyle(fontSize: 16, color: Colors.black87),
+                ),
               ),
-              infoItem(Icons.chat_bubble_outline,
-                  this.article.viewCount.toString()), //浏览数
+              Expanded(
+                flex:3,
+                child: Row(
+                  children: <Widget>[
+                       infoItem(Icons.play_arrow,
+                            this.article.viewCount.toString(),"浏览"), //浏览数
+                       infoItem(
+                            Icons.arrow_upward, this.article.diggCount.toString(),"推荐"), //推荐
+                      
+                  ],
+                ),
+              ),
             ],
           )
         ],

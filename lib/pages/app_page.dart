@@ -4,6 +4,7 @@ import '../common/const/strings.dart';
 //page
 import './home/home_page.dart';
 import './news/news_page.dart';
+import './statuses/statuses_page.dart';
 
 class NavigationIconView {
   final String _title;
@@ -55,7 +56,7 @@ class _AppPageState extends State<AppPage> {
     _pages = [
       HomePage(),
       NewsPage(),
-      Container(color: Colors.red),
+      StatusesPage(),
       Container(color: Colors.white),
       Container(color: Colors.grey),
     ];
@@ -95,7 +96,6 @@ class _AppPageState extends State<AppPage> {
         controller: _pageController,
         itemCount: _pages.length,
         onPageChanged: (int index) {
-          print("当前是第${index}页");
         },
       ),
       bottomNavigationBar: bottomNavigationBar,

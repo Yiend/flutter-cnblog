@@ -5,6 +5,7 @@ import './common/const/strings.dart';
 import 'package:jaguar/jaguar.dart';
 import 'package:jaguar_flutter_asset/jaguar_flutter_asset.dart';
 
+
 void main()async{
 
   final server = Jaguar();

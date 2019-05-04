@@ -3,14 +3,15 @@ import 'package:cached_network_image/cached_network_image.dart';
 import '../../../model/article_model.dart';
 import 'home_blog_detail_page.dart';
 import 'home_blog_detail_page1.dart';
+import '../../../utils/date_util.dart';
 
 class HomeBlogListItem extends StatelessWidget {
   final String title;
   final ArticleModel article;
 
-  const HomeBlogListItem({Key key, this.article,this.title}) : super(key: key);
+  const HomeBlogListItem({Key key, this.article, this.title}) : super(key: key);
 
-  Widget infoItem(IconData icon, String info) {
+  Widget infoItem(IconData icon, String info,String tip) {
     return Row(
       children: <Widget>[
         Icon(
@@ -24,6 +25,10 @@ class HomeBlogListItem extends StatelessWidget {
         Text(
           info,
           style: TextStyle(fontSize: 16.0, color: Colors.grey),
+        ),
+         Text(
+          tip,
+          style: TextStyle(fontSize: 16.0, color: Colors.grey),
         )
       ],
     );
@@ -31,8 +36,10 @@ class HomeBlogListItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print(this.article);
     return Card(
-        child: Container(
+      elevation: 10.0,  //设置阴影
+      child: Container(
       padding: EdgeInsets.all(10.0),
       color: Colors.white,
       child: Column(
@@ -54,7 +61,7 @@ class HomeBlogListItem extends StatelessWidget {
                   builder: (context) {
                 return HomeBlogDetailPage1(
                   articleModel: this.article,
-                  title:title,
+                  title: title,
                 );
               }));
             },
@@ -83,8 +90,9 @@ class HomeBlogListItem extends StatelessWidget {
             ],
           ),
           Text(
-            "${this.article.description.substring(0, 50)}...", //简介
-            overflow: TextOverflow.visible,
+            this.article.description, //简介
+            overflow: TextOverflow.ellipsis,
+            maxLines: 4,
             style: TextStyle(
               fontSize: 15.0,
               color: Colors.grey,
@@ -93,22 +101,26 @@ class HomeBlogListItem extends StatelessWidget {
           SizedBox(
             height: 8.0,
           ),
-          Text(
-            this.article.postDate.toString(), //时间
-            style: TextStyle(fontSize: 16, color: Colors.black87),
-          ),
-          SizedBox(
-            height: 8.0,
-          ),
           Row(
             children: <Widget>[
-              infoItem(
-                  Icons.navigation, this.article.viewCount.toString()), //浏览数
-              SizedBox(
-                width: 10.0,
+                Expanded(
+                  flex: 4,
+                  child:  Text(
+                      DateUtil.getDateStrByDateTime(this.article.postDate,
+                      format: DateFormat.YEAR_MONTH_DAY_HOUR_MINUTE), //时间
+                   style: TextStyle(fontSize: 16, color: Colors.black87),
+                ),
               ),
-              infoItem(Icons.chat_bubble_outline,
-                  this.article.commentCount.toString()), //评论数
+              Expanded(
+                flex: 3,
+                child: Row(
+                  children: <Widget>[
+                       infoItem(Icons.play_arrow, this.article.viewCount.toString(),"浏览"), //浏览数,
+                       infoItem(Icons.chat_bubble_outline,
+                                this.article.commentCount.toString(),"评论"), //评论数 ,
+                  ],
+                )
+              ),
             ],
           )
         ],

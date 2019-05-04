@@ -18,7 +18,7 @@ class _HomeknowledgeState extends State<HomeknowledgePage> {
 
   Future<List<KbArticle>> fakeRequest() async {
     var modules = await blogService.getKnowledgeArticles(this.page, 10);
-    return Future.delayed(Duration(seconds: 1), () {
+    return Future.delayed(Duration(milliseconds: 300), () {
       return modules;
     });
   }
@@ -28,7 +28,7 @@ class _HomeknowledgeState extends State<HomeknowledgePage> {
   */
   Future<void> _onRefresh() async {
     var modules = await blogService.getKnowledgeArticles(1, 10);
-    await Future.delayed(Duration(seconds: 1), () {
+    await Future.delayed(Duration(milliseconds: 300), () {
       setState(() {
         this.modules = modules;
       });

@@ -2,12 +2,20 @@ import 'package:flutter/material.dart';
 
 class Strings {
   static const String appName = "博客园";
+  //blog
   static const String blog = "博客";
   static const String essence = "精华";
   static const String knowledge = "知识库";
+  //news
   static const String latestNews = "最新新闻";
   static const String recommendedNews = "推荐新闻";
   static const String weekNews = "本周热门";
+  //Statuses
+  static const String allStatuses = "全站";
+  static const String follow = "关注";
+  static const String my = "我的";
+  static const String mycomment = "我回应";
+  static const String replyMe = "回复我";
 
   //菜单
   static final List menuData = [

@@ -1,3 +1,6 @@
+import 'package:cnblog/pages/news/news_latest_page.dart';
+import 'news_recommend_page.dart';
+import 'news_week_page.dart';
 import 'package:flutter/material.dart';
 import '../../components/SearchInput.dart';
 import '../../common/const/strings.dart';
@@ -42,9 +45,9 @@ class _NewsPageState extends State<NewsPage>  with SingleTickerProviderStateMixi
       body: TabBarView(
         controller: _tabController,
         children: <Widget>[
-          Container(color: Colors.black),
-          Container(color: Colors.white),
-          Container(color: Colors.red),
+          NewsLatestPage(),
+          NewsRecommendPage(),
+          NewsWeekPage()
         ],
 
       ),

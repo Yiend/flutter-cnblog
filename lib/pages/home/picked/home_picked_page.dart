@@ -18,7 +18,7 @@ class _HomePickedState extends State<HomePickedPage> {
 
   Future<List<ArticleModel>> fakeRequest() async {
     var modules = await blogService.getPickedArticles(this.page, 10);
-    return Future.delayed(Duration(seconds: 1), () {
+    return Future.delayed(Duration(milliseconds: 300), () {
       return modules;
     });
   }
@@ -28,7 +28,7 @@ class _HomePickedState extends State<HomePickedPage> {
   */
   Future<void> _onRefresh() async {
     var modules = await blogService.getPickedArticles(1, 10);
-    await Future.delayed(Duration(seconds: 1), () {
+    await Future.delayed(Duration(milliseconds: 300), () {
       setState(() {
         this.modules = modules;
       });

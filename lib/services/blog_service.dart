@@ -53,8 +53,7 @@ class BlogService {
   */
   Future<List<ArticleModel>> getPickedArticles(
       int pageIndex, int pageSize) async {
-    var url =
-        "${Apis.host}${Apis.api}/blogposts/@picked?pageIndex=${pageIndex}&pageSize=${pageSize}";
+    var url ="api/blogposts/@picked?pageIndex=${pageIndex}&pageSize=${pageSize}";
     var result = await HttpUtil.instance.doGet(url);
 
     List<ArticleModel> modules = [];
@@ -70,8 +69,7 @@ class BlogService {
   */
   Future<List<KbArticle>> getKnowledgeArticles(
       int pageIndex, int pageSize) async {
-    var url =
-        "${Apis.host}${Apis.api}/KbArticles?pageIndex=${pageIndex}&pageSize=${pageSize}";
+    var url ="api/KbArticles?pageIndex=${pageIndex}&pageSize=${pageSize}";
     var result = await HttpUtil.instance.doGet(url);
 
     List<KbArticle> modules = [];

@@ -128,11 +128,6 @@ class DataUtils {
     return b != null && b;
   }
 
-  // 获取accesstoken
-  static Future<String> getAccessToken() async {
-    SharedPreferences sp = await SharedPreferences.getInstance();
-    return sp.getString(SP_AC_TOKEN);
-  }
 
   // 设置选择的主题色
   static setColorTheme(int colorThemeIndex) async {
