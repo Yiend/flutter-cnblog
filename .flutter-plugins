@@ -1,5 +1,7 @@
-flutter_webview_plugin=C:\\Users\\thinkpad\\AppData\\Roaming\\Pub\\Cache\\hosted\\pub.flutter-io.cn\\flutter_webview_plugin-0.3.4\\
-path_provider=C:\\Users\\thinkpad\\AppData\\Roaming\\Pub\\Cache\\hosted\\pub.flutter-io.cn\\path_provider-0.5.0+1\\
-shared_preferences=C:\\Users\\thinkpad\\AppData\\Roaming\\Pub\\Cache\\hosted\\pub.flutter-io.cn\\shared_preferences-0.5.2\\
-sqflite=C:\\Users\\thinkpad\\AppData\\Roaming\\Pub\\Cache\\hosted\\pub.flutter-io.cn\\sqflite-1.1.5\\
-webview_flutter=C:\\Users\\thinkpad\\AppData\\Roaming\\Pub\\Cache\\hosted\\pub.flutter-io.cn\\webview_flutter-0.3.6\\
+connectivity=E:\\flutter\\.pub-cache\\hosted\\pub.flutter-io.cn\\connectivity-0.4.3+1\\
+flutter_webview_plugin=E:\\flutter\\.pub-cache\\hosted\\pub.flutter-io.cn\\flutter_webview_plugin-0.3.4\\
+path_provider=E:\\flutter\\.pub-cache\\hosted\\pub.flutter-io.cn\\path_provider-0.5.0+1\\
+shared_preferences=E:\\flutter\\.pub-cache\\hosted\\pub.flutter-io.cn\\shared_preferences-0.5.2\\
+sqflite=E:\\flutter\\.pub-cache\\hosted\\pub.flutter-io.cn\\sqflite-1.1.5\\
+url_launcher=E:\\flutter\\.pub-cache\\hosted\\pub.flutter-io.cn\\url_launcher-5.0.2\\
+webview_flutter=E:\\flutter\\.pub-cache\\hosted\\pub.flutter-io.cn\\webview_flutter-0.3.6\\

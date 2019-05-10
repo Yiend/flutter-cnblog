@@ -61,7 +61,8 @@ class HomeKnowledgeListItem extends StatelessWidget {
                   articleModel: this.article,
                   title: title,
                 );
-              }));
+              })
+            );
             },
           ),
           SizedBox(

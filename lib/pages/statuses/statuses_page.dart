@@ -1,10 +1,10 @@
+import 'package:cnblog/components/appbar_gradient.dart';
+import 'package:cnblog/pages/statuses/tab_statuses_all_page.dart';
+import 'package:cnblog/pages/statuses/tab_statuses_follow_page.dart';
+import 'package:cnblog/resources/languages.dart';
+import 'package:fluintl/fluintl.dart';
 import 'package:flutter/material.dart';
-import '../../components/SearchInput.dart';
-import '../../common/const/strings.dart';
-import 'statuses_all_page.dart';
-import '../../utils/data_util.dart';
-import '../user/login.dart';
-import 'package:cnblog/components/logindialog.dart';
+import 'package:cnblog/components/SearchInput.dart';
 
 class StatusesPage extends StatefulWidget {
   @override
@@ -14,42 +14,13 @@ class StatusesPage extends StatefulWidget {
 class _StatusesPageState extends State<StatusesPage>
     with SingleTickerProviderStateMixin {
   TabController _tabController;
-  TextEditingController _usernameController;
-  TextEditingController _pwdController;
-
-  void _tabControllerListener() async {
-    if (_tabController.indexIsChanging) {
-      //判断TabBar是否切换
-      if (_tabController.index > 0 && (await DataUtils.isLogin()) == false) {
-        showDialog(
-            context: context,
-            builder: (_) => LoginDialog(
-                  userNameTextgController: _usernameController,
-                  pwdTextgController: _pwdController,
-                  onCancelButtonPressed: () {
-                    _tabController.animateTo(0); //切换Tabbar
-                    Navigator.of(context).pop();
-                  },
-                  onOkButtonPressed: () {
-                    Navigator.push(context, MaterialPageRoute(
-                        //注意传递的参数。goods_list[index]，是吧索引下的goods_date 数据传递了
-                        builder: (context) {
-                      return LoginPage();
-                    }));
-                  },
-                ));
-      }
-    }
-  }
+ 
 
   @override
   void initState() {
     super.initState();
     _tabController = new TabController(vsync: this, initialIndex: 0, length: 5);
-    _tabController.addListener(_tabControllerListener);
 
-    _usernameController = new TextEditingController();
-    _pwdController = new TextEditingController();
   }
 
   @override
@@ -62,26 +33,28 @@ class _StatusesPageState extends State<StatusesPage>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
+      appBar: GradientAppBar(
         title: buildSearchInput(context),
         elevation: 0.0,
+        gradientStart: Color(0xFF3865F7), 
+        gradientEnd: Colors.deepPurple[300],
         bottom: TabBar(
           controller: _tabController,
           // indicatorColor: Colors.black,
           tabs: <Widget>[
-            Tab(text: Strings.allStatuses), //全站
-            Tab(text: Strings.follow), //关注
-            Tab(text: Strings.my), //我的
-            Tab(text: Strings.mycomment), //我回应
-            Tab(text: Strings.replyMe) //回复我
+            Tab(text: IntlUtil.getString(context,LanguageKey.tab_statuses_all)), //全站
+            Tab(text: IntlUtil.getString(context,LanguageKey.tab_statuses_follow)), //关注
+            Tab(text: IntlUtil.getString(context,LanguageKey.tab_statuses_my)), //我的
+            Tab(text: IntlUtil.getString(context,LanguageKey.tab_statuses_mycomment)), //我回应
+            Tab(text: IntlUtil.getString(context,LanguageKey.tab_statuses_replyMe)) //回复我
           ],
         ),
       ),
       body: TabBarView(
         controller: _tabController,
         children: <Widget>[
-          StatusesAllPage(),
-          Container(color: Colors.green),
+          StatusesAllPage(labId: LanguageKey.tab_statuses_all),
+          StatusesFollowPage(labId: LanguageKey.tab_statuses_follow),
           Container(color: Colors.grey),
           Container(color: Colors.pink),
           Container(color: Colors.purple)

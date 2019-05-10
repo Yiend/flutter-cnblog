@@ -1,10 +1,12 @@
+import 'package:fluintl/fluintl.dart';
 import 'package:flutter/material.dart';
+import 'package:cnblog/components/appbar_gradient.dart';
+import 'package:cnblog/pages/home/tab_home_blog_page.dart';
+import 'package:cnblog/pages/home/tab_home_picked_page.dart';
+import 'package:cnblog/pages/home/tab_home_knowledge_page.dart';
+import 'package:cnblog/components/SearchInput.dart';
+import 'package:cnblog/resources/languages.dart';
 
-import '../home/blog/home_blog_page.dart';
-import '../home/picked/home_picked_page.dart';
-import '../home/knowledge/home_knowledge_page.dart';
-import '../../components/SearchInput.dart';
-import '../../common/const/strings.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -30,25 +32,27 @@ class _HomePageState extends State<HomePage>  with SingleTickerProviderStateMixi
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
+      appBar: GradientAppBar(
         title: buildSearchInput(context),
         elevation:0.0,
+        gradientStart: Color(0xFF3865F7), 
+        gradientEnd: Colors.deepPurple[300],
         bottom: TabBar(
-          controller: _tabController,
-         // indicatorColor: Colors.black,
-          tabs: <Widget>[
-            Tab(text: Strings.blog),
-            Tab(text: Strings.essence),
-            Tab(text: Strings.knowledge),
-          ],
+            controller: _tabController,
+          // indicatorColor: Colors.black,
+            tabs: <Widget>[
+              Tab(text: IntlUtil.getString(context,LanguageKey.tab_home_blog)),
+              Tab(text: IntlUtil.getString(context,LanguageKey.tab_home_essence)),
+              Tab(text: IntlUtil.getString(context,LanguageKey.tab_home_knowledge)),
+            ],
         ),
       ),
       body: TabBarView(
         controller: _tabController,
         children: <Widget>[
-           HomeBlogPage(),
-           HomePickedPage(),
-           HomeknowledgePage()
+           HomeBlogPage(labId: LanguageKey.tab_home_blog),
+           HomePickedPage(labId:LanguageKey.tab_home_essence),
+           HomeknowledgePage(labId: LanguageKey.tab_home_knowledge)
         ],
 
       ),
@@ -78,3 +82,5 @@ class _HomePageState extends State<HomePage>  with SingleTickerProviderStateMixi
     }, (value) {}, () {});
   }
 }
+
+

@@ -18,7 +18,7 @@
                 </span>
             </div>
         </div>
-        <div class="statuses" v-html="model.content">
+        <div class="statuses" v-html="model.contentDisplay">
         </div>
         <div class="comments">
             <div class="comment-header">
@@ -33,13 +33,13 @@
                     <div class="item-authorInfo">
                         <div class="authorInfo-content">
                             <span class="item-name">
-                                {{ item.UserdisplayName }}
+                                {{ item.userdisplayName }}
                             </span>
                         </div>
-                        <div class="item-content" v-html="item.contentDisplay"></div>
+                        <div class="item-content" v-html="item.content"></div>
                         <div class="item-actions">
                             <span class="item-time">{{ item.dateDisplay}}</span>
-                            <div class="item-edit" v-if="item.IsLoginUser">
+                            <div class="item-edit" v-if="item.isLoginUser">
                                 <img src="http://127.0.0.1:8080/images/ic_edit.png" v-on:click="editItem(item)" />
                                 <img src="http://127.0.0.1:8080/images/ic_delete.png" v-on:click="deleteItem(item)" />
                             </div>
@@ -77,7 +77,7 @@
             methods: {
                 reload: function () {
                     this.loadStatus = 1;
-                    //reload();
+                    flutterReload.postMessage("123");
                 },
                 editItem: function (item) {
                     editItem(item.Id);
@@ -94,7 +94,7 @@
         }
         function loadReload() {
             if (app.loadStatus == 0 || app.loadStatus == 2){
-                    //reload();
+               flutterReload.postMessage("123");
             }
         }
         function updateModel(model) {

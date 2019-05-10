@@ -1,13 +1,14 @@
-import '../common/const/enums.dart';
-import '../utils/http_util.dart';
-import '../model/statuses_model.dart';
+import 'package:cnblog/model/enums.dart';
+import 'package:cnblog/utils/http_util.dart';
+import 'package:cnblog/model/statuses_model.dart';
+import 'package:cnblog/utils/data_util.dart';
 
 class StatusesService {
   /* 
    *获取闪存
    */
   Future<List<StatusesModel>> getStatuses(
-      StatusesType type, int pageIndex, int pageSize) async {
+      StatusesType type, {int pageIndex, int pageSize=10}) async {
     String statusType = "all";
     switch (type) {
       case StatusesType.all:
@@ -39,8 +40,6 @@ class StatusesService {
     var url =
         "api/statuses/@${statusType}?pageIndex=${pageIndex}&pageSize=${pageSize}&tag=";
 
-    print(url);
-
     List<StatusesModel> modules = [];
 
     if (type != StatusesType.all) {
@@ -58,5 +57,25 @@ class StatusesService {
 
       return modules;
     }
+  }
+
+  /* 
+   *获取闪存评论
+   */
+  Future<dynamic> getComments(int id) async {
+    var url = "api/statuses/$id/comments";
+    var islogin = await DataUtils.isLogin();
+    
+    List<dynamic> modules = [];
+
+    var result = await HttpUtil.instance.doGet(url);
+
+    result.data.forEach((data) {
+      var model = StatusesCommentsModel.fromJson(data);
+      model.isLoginUser = islogin;
+      modules.add(model.toJson());
+    });
+
+    return modules;
   }
 }

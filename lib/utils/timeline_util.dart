@@ -42,7 +42,6 @@ abstract class TimelineInfo {
 
 }
 
-
 class ZhInfo implements TimelineInfo {
   String suffixAgo() => '前';
 

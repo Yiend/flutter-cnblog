@@ -1,5 +1,5 @@
 name: cnblog
-description: A new Flutter project.
+description: 用flutter 为博客园写的一款app.
 
 # The following defines the version and build number for your application.
 # A version number is three numbers separated by dots, like 1.2.43
@@ -19,14 +19,34 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  flutter_localizations:
+    sdk: flutter
 
   shared_preferences: ^0.5.2
+  # 网络请求
   dio: ^2.1.2 #latest version
+  # 缓存网络图片
   cached_network_image: ^0.7.0
   flutter_webview_plugin: ^0.3.4
+  # Web View
   webview_flutter: ^0.3.6
-  json_annotation: ^2.2.0
+  # 静态资源服务器
   jaguar_flutter_asset: ^2.2.0
+  # 列表刷新
+  pull_to_refresh: ^1.3.2
+  #flutter_easyrefresh: ^1.2.7
+  #浏览器打开URL
+  url_launcher: ^5.0.2
+  #网络状态
+  connectivity: ^0.4.3+1
+
+  # Rx 
+  rxdart: ^0.22.0
+  # 国际化/多语言库
+  fluintl: ^0.1.3
+  # Loading
+  flutter_spinkit: ^3.1.0
+
 
 
 
@@ -70,6 +90,7 @@ flutter:
     - assets/images/login.gif
     - assets/images/icon_password.png
     - assets/images/icon_username.png
+    - assets/images/start_bg.jpg
     - assets/js/jquery.min.js
     - assets/js/vue.min.js
     - assets/articles.html

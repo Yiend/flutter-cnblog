@@ -7,7 +7,7 @@ class NewsService{
    /* 
    *分页获取最新新闻
    */
-  Future<List<NewsModel>> getLatestNews(int pageIndex, int pageSize) async {
+  Future<List<NewsModel>> getLatestNews({int pageIndex, int pageSize=10}) async {
     var url ="api/NewsItems?pageIndex=${pageIndex}&pageSize=${pageSize}";
 
     var result = await HttpUtil.instance.doGet(url);
@@ -23,7 +23,7 @@ class NewsService{
   /* 
    *分页获取推荐新闻
    */
-  Future<List<NewsModel>> getRecommendNews(int pageIndex, int pageSize) async {
+  Future<List<NewsModel>> getRecommendNews({int pageIndex, int pageSize=10}) async {
     var url ="api/newsitems/@recommended?pageIndex=${pageIndex}&pageSize=${pageSize}";
 
     var result = await HttpUtil.instance.doGet(url);
@@ -39,7 +39,7 @@ class NewsService{
    /* 
    *分页获取本周热门新闻
    */
-  Future<List<NewsModel>> getWeekNews(int pageIndex, int pageSize) async {
+  Future<List<NewsModel>> getWeekNews({int pageIndex, int pageSize=10}) async {
     var url ="api/newsitems/@hot-week?pageIndex=${pageIndex}&pageSize=${pageSize}";
 
     var result = await HttpUtil.instance.doGet(url);
@@ -60,4 +60,22 @@ class NewsService{
     var result = await HttpUtil.instance.doGet(url);
     return result.data;
   }
+
+
+   /*
+   * 分页获取新闻评论
+   */
+  Future<List<Map>> getNewsComments(int newsId, int pageIndex, int pageSize) async {
+    var url =
+        "api/news/${newsId}/comments?pageIndex=${pageIndex}&pageSize=${pageSize}";
+    var result = await HttpUtil.instance.doGet(url);
+
+    List<Map> modules = [];
+    result.data.forEach((data) {
+      modules.add(NewsComments.fromJson(data).toJson());
+    });
+
+    return modules;
+  }
+
 }

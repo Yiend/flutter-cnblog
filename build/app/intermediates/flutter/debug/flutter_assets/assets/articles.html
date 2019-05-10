@@ -16,10 +16,10 @@
         <div class="authorinfo">
             <span class="avatar-wrapper">
                 <img class="avatar" width="45" height="45"
-                    v-bind:src="model.Avatar=='https:'?'http://127.0.0.1:8080/images/avatar_placeholder.png':model.Avatar">
+                    v-bind:src="model.avatar=='https:'?'http://127.0.0.1:8080/images/avatar_placeholder.png':model.avatar">
             </span>
             <div class="authorInfo-content">
-                <div class="authorInfo-name" v-html="model.Author"></div>
+                <div class="authorInfo-name" v-html="model.author"></div>
                 <span class="authorInfo-time">发布于 · {{ model.dateDisplay }} · {{ model.diggCount }} 推荐 ·
                     {{ model.viewCount }} 阅读</span>
             </div>
@@ -35,7 +35,7 @@
             <section v-for="item in comments">
                 <div class="comments-item">
                     <span class="item-avatar"><img class="avatar" width="45" height="45"
-                            v-bind:src="item.FaceUrl==''?'http://127.0.0.1:8080/images/avatar_placeholder.png':item.FaceUrl" /></span>
+                            v-bind:src="item.faceUrl==''?'http://127.0.0.1:8080/images/avatar_placeholder.png':item.faceUrl" /></span>
                     <div class="item-authorInfo">
                         <span class="item-name">{{ item.author }}</span>
                         <div class="item-content" v-html="item.body"></div>
@@ -47,7 +47,7 @@
         </div>
         <div class="footer">
             <div class="loading" v-if="loadStatus == 0||loadStatus == 1">
-                <!-- <img src="http://127.0.0.1:8080/images/loading.gif" class="loading-img" /><span class="loading-content">正在加载中</span>  -->
+                <img src="http://127.0.0.1:8080/images/loading.gif" class="loading-img" /><span class="loading-content">正在加载中</span> 
             </div>
             <div class="nodata" v-else-if="loadStatus == 2">
                 - 还没有评论 -
@@ -74,7 +74,7 @@
             methods: {
                 reload: function () {
                     this.loadStatus = 1;
-                   // flutterReload.postMessage();
+                    flutterReload.postMessage("123");
                 }
             }
         });
@@ -90,7 +90,7 @@
         function loadReload() {
             if ($(document).scrollTop() + window.screen.height + 70 >= $(document).height()) {
                 if (app.loadStatus == 0 || app.loadStatus == 2){
-                   // flutterReload.postMessage();
+                    flutterReload.postMessage("123");
                 }
                    
             }

@@ -1,27 +1,33 @@
-import 'package:cnblog/pages/news/news_page.dart';
+import 'package:cnblog/blocs/bloc_provider.dart';
+import 'package:cnblog/blocs/home_bloc.dart';
+import 'package:cnblog/blocs/news_bloc.dart';
+import 'package:cnblog/blocs/statuses_bloc.dart';
+import 'package:cnblog/resources/languages.dart';
+import 'package:fluintl/fluintl.dart';
 import 'package:flutter/material.dart';
-import '../common/const/strings.dart';
+import 'package:cnblog/resources/strings.dart';
+
 //page
-import './home/home_page.dart';
-import './news/news_page.dart';
-import './statuses/statuses_page.dart';
+import 'package:cnblog/pages/home/home_page.dart';
+import 'package:cnblog/pages/news/news_page.dart';
+import 'package:cnblog/pages/statuses/statuses_page.dart';
 
 class NavigationIconView {
   final String _title;
   final Widget _icon;
   final Widget _activeIcon;
-  final BottomNavigationBarItem navigationBarItem;
+  //final BottomNavigationBarItem navigationBarItem;
 
   NavigationIconView({Key key, String title, Widget icon, Widget activeIcon})
       : _title = title,
         _icon = icon,
-        _activeIcon = activeIcon,
-        navigationBarItem = new BottomNavigationBarItem(
-          icon: icon,
-          activeIcon: activeIcon,
-          title: Text(title),
-          backgroundColor: Colors.white,
-        );
+        _activeIcon = activeIcon;
+  // navigationBarItem = new BottomNavigationBarItem(
+  //   icon: icon,
+  //   activeIcon: activeIcon,
+  //   title: Text(title),
+  //   backgroundColor: Colors.white,
+  // );
 }
 
 class AppPage extends StatefulWidget {
@@ -41,7 +47,7 @@ class _AppPageState extends State<AppPage> {
   @override
   void initState() {
     super.initState();
-    
+
     //初始化添加底部导航
     for (var item in Strings.menuData) {
       _navigationIconViews.add(new NavigationIconView(
@@ -54,9 +60,18 @@ class _AppPageState extends State<AppPage> {
     _pageController = new PageController(initialPage: _currentIndex);
 
     _pages = [
-      HomePage(),
-      NewsPage(),
-      StatusesPage(),
+      BlocProvider<HomeBloc>(
+        bloc: HomeBloc(),
+        child: HomePage(),
+      ),
+      BlocProvider<NewsBloc>(
+        bloc: NewsBloc(),
+        child: NewsPage(),
+      ),
+      BlocProvider<StatusesBloc>(
+        bloc: StatusesBloc(),
+        child: StatusesPage(),
+      ),
       Container(color: Colors.white),
       Container(color: Colors.grey),
     ];
@@ -65,38 +80,27 @@ class _AppPageState extends State<AppPage> {
   @override
   Widget build(BuildContext context) {
     final BottomNavigationBar bottomNavigationBar = new BottomNavigationBar(
-      items: _navigationIconViews
-          .map((NavigationIconView navigationIconView) =>
-              navigationIconView.navigationBarItem)
-          .toList(),
+      items: _navigationIconViews.map((NavigationIconView navigationIconView) {
+        return BottomNavigationBarItem(
+          icon: navigationIconView._icon,
+          activeIcon: navigationIconView._activeIcon,
+          title: Text(IntlUtil.getString(context, navigationIconView._title)),
+          backgroundColor: Colors.white,
+        );
+      }).toList(),
       currentIndex: _currentIndex,
       type: BottomNavigationBarType.fixed,
       onTap: _selectNavigation,
     );
 
     return Scaffold(
-      /*appBar: AppBar(
-        elevation: 0.0, //设置阴影
-        title: Text(Strings.AppName),
-        actions: <Widget>[
-          IconButton(
-            icon: Icon(Icons.search),
-            onPressed: onPressedBySearch,
-          ),
-          IconButton(
-            icon: Icon(Icons.add),
-            onPressed: onPressedByAdd,
-          )
-        ],
-      ),*/
       body: PageView.builder(
         itemBuilder: (BuildContext context, int index) {
           return _pages[_currentIndex];
         },
         controller: _pageController,
         itemCount: _pages.length,
-        onPageChanged: (int index) {
-        },
+        onPageChanged: (int index) {},
       ),
       bottomNavigationBar: bottomNavigationBar,
     );
@@ -108,19 +112,5 @@ class _AppPageState extends State<AppPage> {
       _pageController.animateToPage(_currentIndex,
           duration: Duration(milliseconds: 200), curve: Curves.easeInOut);
     });
-  }
-
-  /*
-   搜索图标点击事件
-  */
-  void onPressedBySearch() {
-    print("点击搜索");
-  }
-
-  /*
-   加号图标事件
-  */
-  void onPressedByAdd() {
-    print("点击加号");
   }
 }

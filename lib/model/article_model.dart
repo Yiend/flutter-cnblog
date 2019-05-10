@@ -44,6 +44,8 @@ class ArticleModel {
     viewCount = data['ViewCount'];
     commentCount = data['CommentCount'];
     diggCount = data['DiggCount'];
+    dateDisplay =
+        TimelineUtil.formatByDateTime(this.postDate, locale: 'zh').toString();
   }
 
   Map<String, dynamic> toJson() {

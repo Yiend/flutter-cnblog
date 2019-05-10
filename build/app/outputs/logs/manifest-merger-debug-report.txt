@@ -6,7 +6,9 @@ INJECTED from D:\MyProject\Android\cnblog\android\app\src\main\AndroidManifest.x
 INJECTED from D:\MyProject\Android\cnblog\android\app\src\main\AndroidManifest.xml:1:1-37:12
 MERGED from D:\MyProject\Android\cnblog\android\app\src\main\AndroidManifest.xml:1:1-37:12
 MERGED from [:shared_preferences] D:\MyProject\Android\cnblog\build\shared_preferences\intermediates\merged_manifests\debug\processDebugManifest\merged\AndroidManifest.xml:2:1-7:12
+MERGED from [:url_launcher] D:\MyProject\Android\cnblog\build\url_launcher\intermediates\merged_manifests\debug\processDebugManifest\merged\AndroidManifest.xml:2:1-14:12
 MERGED from [:sqflite] D:\MyProject\Android\cnblog\build\sqflite\intermediates\merged_manifests\debug\processDebugManifest\merged\AndroidManifest.xml:2:1-7:12
+MERGED from [:connectivity] D:\MyProject\Android\cnblog\build\connectivity\intermediates\merged_manifests\debug\processDebugManifest\merged\AndroidManifest.xml:2:1-10:12
 MERGED from [:path_provider] D:\MyProject\Android\cnblog\build\path_provider\intermediates\merged_manifests\debug\processDebugManifest\merged\AndroidManifest.xml:2:1-7:12
 MERGED from [:flutter_webview_plugin] D:\MyProject\Android\cnblog\build\flutter_webview_plugin\intermediates\merged_manifests\debug\processDebugManifest\merged\AndroidManifest.xml:2:1-7:12
 MERGED from [:webview_flutter] D:\MyProject\Android\cnblog\build\webview_flutter\intermediates\merged_manifests\debug\processDebugManifest\merged\AndroidManifest.xml:2:1-7:12
@@ -39,6 +41,8 @@ MERGED from D:\MyProject\Android\cnblog\android\app\src\main\AndroidManifest.xml
 		ADDED from D:\MyProject\Android\cnblog\android\app\src\main\AndroidManifest.xml:10:22-64
 application
 ADDED from D:\MyProject\Android\cnblog\android\app\src\main\AndroidManifest.xml:12:5-36:19
+MERGED from [:url_launcher] D:\MyProject\Android\cnblog\build\url_launcher\intermediates\merged_manifests\debug\processDebugManifest\merged\AndroidManifest.xml:7:5-12:19
+MERGED from [:url_launcher] D:\MyProject\Android\cnblog\build\url_launcher\intermediates\merged_manifests\debug\processDebugManifest\merged\AndroidManifest.xml:7:5-12:19
 MERGED from [androidx.core:core:1.0.0] C:\Users\thinkpad\.gradle\caches\transforms-1\files-1.1\core-1.0.0.aar\b2ef943e94d63c884fcf9061d0ec5eb6\AndroidManifest.xml:22:5-89
 MERGED from [androidx.core:core:1.0.0] C:\Users\thinkpad\.gradle\caches\transforms-1\files-1.1\core-1.0.0.aar\b2ef943e94d63c884fcf9061d0ec5eb6\AndroidManifest.xml:22:5-89
 MERGED from [androidx.versionedparcelable:versionedparcelable:1.0.0] C:\Users\thinkpad\.gradle\caches\transforms-1\files-1.1\versionedparcelable-1.0.0.aar\b32fd6b62e792cc42c5da4c174275bb9\AndroidManifest.xml:22:5-23:19
@@ -89,8 +93,12 @@ INJECTED from D:\MyProject\Android\cnblog\android\app\src\main\AndroidManifest.x
 INJECTED from D:\MyProject\Android\cnblog\android\app\src\main\AndroidManifest.xml
 MERGED from [:shared_preferences] D:\MyProject\Android\cnblog\build\shared_preferences\intermediates\merged_manifests\debug\processDebugManifest\merged\AndroidManifest.xml:5:5-44
 MERGED from [:shared_preferences] D:\MyProject\Android\cnblog\build\shared_preferences\intermediates\merged_manifests\debug\processDebugManifest\merged\AndroidManifest.xml:5:5-44
+MERGED from [:url_launcher] D:\MyProject\Android\cnblog\build\url_launcher\intermediates\merged_manifests\debug\processDebugManifest\merged\AndroidManifest.xml:5:5-44
+MERGED from [:url_launcher] D:\MyProject\Android\cnblog\build\url_launcher\intermediates\merged_manifests\debug\processDebugManifest\merged\AndroidManifest.xml:5:5-44
 MERGED from [:sqflite] D:\MyProject\Android\cnblog\build\sqflite\intermediates\merged_manifests\debug\processDebugManifest\merged\AndroidManifest.xml:5:5-44
 MERGED from [:sqflite] D:\MyProject\Android\cnblog\build\sqflite\intermediates\merged_manifests\debug\processDebugManifest\merged\AndroidManifest.xml:5:5-44
+MERGED from [:connectivity] D:\MyProject\Android\cnblog\build\connectivity\intermediates\merged_manifests\debug\processDebugManifest\merged\AndroidManifest.xml:5:5-44
+MERGED from [:connectivity] D:\MyProject\Android\cnblog\build\connectivity\intermediates\merged_manifests\debug\processDebugManifest\merged\AndroidManifest.xml:5:5-44
 MERGED from [:path_provider] D:\MyProject\Android\cnblog\build\path_provider\intermediates\merged_manifests\debug\processDebugManifest\merged\AndroidManifest.xml:5:5-44
 MERGED from [:path_provider] D:\MyProject\Android\cnblog\build\path_provider\intermediates\merged_manifests\debug\processDebugManifest\merged\AndroidManifest.xml:5:5-44
 MERGED from [:flutter_webview_plugin] D:\MyProject\Android\cnblog\build\flutter_webview_plugin\intermediates\merged_manifests\debug\processDebugManifest\merged\AndroidManifest.xml:5:5-44
@@ -113,3 +121,19 @@ INJECTED from D:\MyProject\Android\cnblog\android\app\src\debug\AndroidManifest.
 	android:minSdkVersion
 		INJECTED from D:\MyProject\Android\cnblog\android\app\src\main\AndroidManifest.xml
 		INJECTED from D:\MyProject\Android\cnblog\android\app\src\debug\AndroidManifest.xml
+activity#io.flutter.plugins.urllauncher.UrlLauncherPlugin$WebViewActivity
+ADDED from [:url_launcher] D:\MyProject\Android\cnblog\build\url_launcher\intermediates\merged_manifests\debug\processDebugManifest\merged\AndroidManifest.xml:8:9-11:74
+	android:exported
+		ADDED from [:url_launcher] D:\MyProject\Android\cnblog\build\url_launcher\intermediates\merged_manifests\debug\processDebugManifest\merged\AndroidManifest.xml:10:13-37
+	android:theme
+		ADDED from [:url_launcher] D:\MyProject\Android\cnblog\build\url_launcher\intermediates\merged_manifests\debug\processDebugManifest\merged\AndroidManifest.xml:11:13-71
+	android:name
+		ADDED from [:url_launcher] D:\MyProject\Android\cnblog\build\url_launcher\intermediates\merged_manifests\debug\processDebugManifest\merged\AndroidManifest.xml:9:13-92
+uses-permission#android.permission.ACCESS_NETWORK_STATE
+ADDED from [:connectivity] D:\MyProject\Android\cnblog\build\connectivity\intermediates\merged_manifests\debug\processDebugManifest\merged\AndroidManifest.xml:7:5-79
+	android:name
+		ADDED from [:connectivity] D:\MyProject\Android\cnblog\build\connectivity\intermediates\merged_manifests\debug\processDebugManifest\merged\AndroidManifest.xml:7:22-76
+uses-permission#android.permission.ACCESS_WIFI_STATE
+ADDED from [:connectivity] D:\MyProject\Android\cnblog\build\connectivity\intermediates\merged_manifests\debug\processDebugManifest\merged\AndroidManifest.xml:8:5-76
+	android:name
+		ADDED from [:connectivity] D:\MyProject\Android\cnblog\build\connectivity\intermediates\merged_manifests\debug\processDebugManifest\merged\AndroidManifest.xml:8:22-73

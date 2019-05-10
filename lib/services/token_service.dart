@@ -1,7 +1,7 @@
-import '../utils/http_util.dart';
-import '../common/const/apis.dart';
-import '../utils/data_util.dart';
-import '../model/token_model.dart';
+import 'package:cnblog/utils/http_util.dart';
+import 'package:cnblog/common/constants.dart';
+import 'package:cnblog/utils/data_util.dart';
+import 'package:cnblog/model/token_model.dart';
 
 class TonkenService {
   Future<String> getClientToken() async {
@@ -14,11 +14,11 @@ class TonkenService {
 
     Map<String, String> map = new Map();
     map['grant_type'] = 'client_credentials';
-    map['client_id'] = Apis.clientId;
-    map['client_secret'] = Apis.clientSecret;
+    map['client_id'] = AppConfig.clientId;
+    map['client_secret'] = AppConfig.clientSecret;
 
     var result =
-        await HttpUtil.instance.postForm<TokenModel>(Apis.clientToken, paras: map);
+        await HttpUtil.instance.postForm<TokenModel>(AppConfig.clientToken, paras: map);
     var tokenModel = TokenModel.fromJson(result.data);
 
     if (tokenModel != null) {

@@ -1,4 +1,5 @@
 import '../utils/timeline_util.dart';
+import '../utils/data_util.dart';
 
 class StatusesModel {
   int id;
@@ -57,6 +58,53 @@ class StatusesModel {
     jsonMap['dateDisplay'] = this.dateDisplay;
     jsonMap['contentDisplay'] = this.contentDisplay;
     jsonMap['isDelete'] = this.isDelete;
+    return jsonMap;
+  }
+}
+
+
+class StatusesCommentsModel {
+  int id;
+  String content;
+  int statusId;
+  String userAlias;
+  String userDisplayName;
+  DateTime dateAdded;
+  String userIconUrl;
+  int userId;
+  String userGuid;
+  String dateDisplay;
+  bool isLoginUser;
+
+  StatusesCommentsModel.fromJson(Map data) {
+    id = data['Id'];
+    content = data['Content'];
+    statusId = data['StatusId'];
+    userAlias = data['UserAlias'];
+    userDisplayName = data['UserDisplayName'];
+    dateAdded = DateTime.parse(data['DateAdded']);
+    userIconUrl = data['UserIconUrl'];
+    userId = data['UserId'];
+    userGuid = data['UserGuid'];
+    dateDisplay =
+        TimelineUtil.formatByDateTime(this.dateAdded, locale: 'zh').toString();
+
+    isLoginUser = false;
+  }
+
+  Map<String, dynamic> toJson() {
+    var jsonMap = new Map<String, dynamic>();
+    jsonMap['id'] = this.id;
+    jsonMap['content'] = this.content;
+    jsonMap['statusId'] = this.statusId;
+    jsonMap['userAlias'] = this.userAlias;
+    jsonMap['userDisplayName'] = this.userDisplayName;
+    jsonMap['dateAdded'] = this.dateAdded?.toIso8601String();
+    jsonMap['userIconUrl'] = this.userIconUrl;
+    jsonMap['userId'] = this.userId;
+    jsonMap['userGuid'] = this.userGuid;
+    jsonMap['dateDisplay'] = this.dateDisplay;
+    jsonMap['isLoginUser'] = this.isLoginUser;
     return jsonMap;
   }
 }

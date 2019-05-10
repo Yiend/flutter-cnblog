@@ -1,6 +1,6 @@
 import 'dart:io';
 import 'package:dio/dio.dart';
-import '../common/const/apis.dart';
+import 'package:cnblog/common/constants.dart';
 import '../model/token_model.dart';
 import '../utils/data_util.dart';
 
@@ -8,7 +8,7 @@ class HttpUtil {
   Dio _dio;
   Dio _tokenDio;
   BaseOptions options;
-  static final _baseUrl = Apis.host;
+  static final _baseUrl = AppConfig.host;
   static final _jsonContentType = ContentType.parse("application/json");
   static final _formContentType =
       ContentType.parse("application/x-www-form-urlencoded");
@@ -40,7 +40,6 @@ class HttpUtil {
     //拦截器
     _dio.interceptors
         .add(InterceptorsWrapper(onRequest: (RequestOptions options) {
-      print('send request：path:${options.path}，baseURL:${options.baseUrl}');
       // 在请求被发送之前做一些事情
       if (options.path.startsWith("token")) {
         return options;
@@ -51,11 +50,11 @@ class HttpUtil {
 
         Map<String, String> map = new Map();
         map['grant_type'] = 'client_credentials';
-        map['client_id'] = Apis.clientId;
-        map['client_secret'] = Apis.clientSecret;
+        map['client_id'] = AppConfig.clientId;
+        map['client_secret'] = AppConfig.clientSecret;
 
          var option = new Options(contentType: _formContentType);
-        return _tokenDio.post(Apis.clientToken, data: map,options: option).then((result) {
+        return _tokenDio.post(AppConfig.clientToken, data: map,options: option).then((result) {
 
            var tokenModel = TokenModel.fromJson(result.data);
             if (tokenModel != null) {

@@ -70,7 +70,7 @@
             methods: {
                 reload: function () {
                     this.loadStatus = 1;
-                    //reload();
+                    flutterReload.postMessage("123");
                 },
                 editItem: function (item) {
                     editItem(item.CommentID);
@@ -92,7 +92,7 @@
         function loadReload() {
             if ($(document).scrollTop() + window.screen.height + 70 >= $(document).height()) {
                 if (app.loadStatus == 0 || app.loadStatus == 2){
-                     //reload();
+                     flutterReload.postMessage("123");
                 }
             }
         }
