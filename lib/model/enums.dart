@@ -8,6 +8,15 @@ enum StatusesType {
   comment
 }
 
+enum QuestionsType{
+  nosolved,
+  highscore,
+  noanswer,
+  solved,
+  myquestion
+}
+
+
 enum LoadMoreStatus{
   stausDefault,
   stausLoading,

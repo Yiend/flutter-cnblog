@@ -180,6 +180,7 @@ public final class R {
     public static final int notification_template_icon_low_bg=0x7f04000a;
     public static final int notification_tile_bg=0x7f04000b;
     public static final int notify_panel_notification_icon_bg=0x7f04000c;
+    public static final int toast_bg=0x7f04000d;
   }
   public static final class id {
     public static final int action_container=0x7f050000;
@@ -190,26 +191,27 @@ public final class R {
     public static final int async=0x7f050005;
     public static final int blocking=0x7f050006;
     public static final int chronometer=0x7f050007;
-    public static final int forever=0x7f050008;
-    public static final int icon=0x7f050009;
-    public static final int icon_group=0x7f05000a;
-    public static final int info=0x7f05000b;
-    public static final int italic=0x7f05000c;
-    public static final int line1=0x7f05000d;
-    public static final int line3=0x7f05000e;
-    public static final int normal=0x7f05000f;
-    public static final int notification_background=0x7f050010;
-    public static final int notification_main_column=0x7f050011;
-    public static final int notification_main_column_container=0x7f050012;
-    public static final int right_icon=0x7f050013;
-    public static final int right_side=0x7f050014;
-    public static final int tag_transition_group=0x7f050015;
-    public static final int tag_unhandled_key_event_manager=0x7f050016;
-    public static final int tag_unhandled_key_listeners=0x7f050017;
-    public static final int text=0x7f050018;
-    public static final int text2=0x7f050019;
-    public static final int time=0x7f05001a;
-    public static final int title=0x7f05001b;
+    public static final int custom_toast_container=0x7f050008;
+    public static final int forever=0x7f050009;
+    public static final int icon=0x7f05000a;
+    public static final int icon_group=0x7f05000b;
+    public static final int info=0x7f05000c;
+    public static final int italic=0x7f05000d;
+    public static final int line1=0x7f05000e;
+    public static final int line3=0x7f05000f;
+    public static final int normal=0x7f050010;
+    public static final int notification_background=0x7f050011;
+    public static final int notification_main_column=0x7f050012;
+    public static final int notification_main_column_container=0x7f050013;
+    public static final int right_icon=0x7f050014;
+    public static final int right_side=0x7f050015;
+    public static final int tag_transition_group=0x7f050016;
+    public static final int tag_unhandled_key_event_manager=0x7f050017;
+    public static final int tag_unhandled_key_listeners=0x7f050018;
+    public static final int text=0x7f050019;
+    public static final int text2=0x7f05001a;
+    public static final int time=0x7f05001b;
+    public static final int title=0x7f05001c;
   }
   public static final class integer {
     public static final int status_bar_notification_info_maxnum=0x7f060000;
@@ -221,6 +223,7 @@ public final class R {
     public static final int notification_template_icon_group=0x7f070003;
     public static final int notification_template_part_chronometer=0x7f070004;
     public static final int notification_template_part_time=0x7f070005;
+    public static final int toast_custom=0x7f070006;
   }
   public static final class mipmap {
     public static final int ic_launcher=0x7f080000;

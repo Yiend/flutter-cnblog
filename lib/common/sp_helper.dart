@@ -1,5 +1,4 @@
-
-
+import 'package:cnblog/model/token_model.dart';
 import 'package:cnblog/utils/sp_util.dart';
 import 'package:cnblog/model/language_model.dart';
 
@@ -27,13 +26,16 @@ class SpHelper {
     }
   }
 
-  static Object getObject<T>(String key) {
+  static T getObject<T>(String key) {
     Map map = SpUtil.getObject(key);
     if (map == null) return null;
     Object obj;
     switch (T) {
       case LanguageModel:
         obj = LanguageModel.fromJson(map);
+        break;
+      case TokenModel:
+        obj = TokenModel.fromJson(map);
         break;
       default:
         break;

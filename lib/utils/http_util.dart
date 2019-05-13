@@ -1,8 +1,8 @@
 import 'dart:io';
+import 'package:cnblog/common/sp_helper.dart';
 import 'package:dio/dio.dart';
 import 'package:cnblog/common/constants.dart';
 import '../model/token_model.dart';
-import '../utils/data_util.dart';
 
 class HttpUtil {
   Dio _dio;
@@ -12,7 +12,6 @@ class HttpUtil {
   static final _jsonContentType = ContentType.parse("application/json");
   static final _formContentType =
       ContentType.parse("application/x-www-form-urlencoded");
-  static String token;
 
   // 工厂模式
   factory HttpUtil() => _getInstance();
@@ -45,7 +44,8 @@ class HttpUtil {
         return options;
       }
 
-      if (token == null) {
+      var sptokenModel = SpHelper.getObject<TokenModel>(CacheKey.access_token);
+      if (sptokenModel == null ||sptokenModel.access_token==null) {
         _dio.interceptors.requestLock.lock();
 
         Map<String, String> map = new Map();
@@ -53,24 +53,25 @@ class HttpUtil {
         map['client_id'] = AppConfig.clientId;
         map['client_secret'] = AppConfig.clientSecret;
 
-         var option = new Options(contentType: _formContentType);
-        return _tokenDio.post(AppConfig.clientToken, data: map,options: option).then((result) {
+        var option = new Options(contentType: _formContentType);
+        return _tokenDio
+            .post(AppConfig.clientToken, data: map, options: option)
+            .then((result) {
+          var tokenModel = TokenModel.fromJson(result.data);
+          if (tokenModel != null) {
+            SpHelper.setObject(CacheKey.access_token, tokenModel.toJson());
+          }
 
-           var tokenModel = TokenModel.fromJson(result.data);
-            if (tokenModel != null) {
-               token =tokenModel.access_token;
-              DataUtils.setToken(tokenModel);
-            }
-
-          options.headers["Authorization"] = 'Bearer ${token}';
+          options.headers["Authorization"] = 'Bearer ${tokenModel.access_token}';
           return options;
-        }).whenComplete(() => _dio.interceptors.requestLock.unlock()); // unlock the dio
+        }).whenComplete(
+                () => _dio.interceptors.requestLock.unlock()); // unlock the dio
 
-      }else{
-          options.headers["Authorization"] = 'Bearer ${token}';
-          return options; //continue
+      } else {
+        options.headers["Authorization"] = 'Bearer ${sptokenModel.access_token}';
+        return options; //continue
       }
-     
+
       // 如果你想完成请求并返回一些自定义数据，可以返回一个`Response`对象或返回`dio.resolve(data)`。
       // 这样请求将会被终止，上层then会被调用，then中返回的数据将是你的自定义数据data.
       //
@@ -86,7 +87,6 @@ class HttpUtil {
   }
 
   static final LogicError unknowError = LogicError(-1, "未知异常");
-
 
   Future<dynamic> doGet(String uri, {Map<String, dynamic> headers = null}) {
     var option = new Options();
@@ -151,44 +151,6 @@ class HttpUtil {
   /// 如果成功则将我们需要的数据返回出去，否则进异常处理方法，返回异常信息
   static Future<Response> logicalErrorTransform(Response resp) {
     return Future.value(resp);
-
-    /*
-    if (resp.data != null) {
-      if (resp.data["code"] == 0) {
-        T realData = resp.data["data"];
-        return Future.value(realData);
-      }
-    }
-
-    if (debug) {
-      print('resp--------$resp');
-      print('resp.data--------${resp.data}');
-    }
-    LogicError error;
-    if (resp.data != null && resp.data["code"] != 0) {
-      if (resp.data['data'] != null) {
-        /// 失败时  错误提示在 data中时
-        /// 收到token过期时  直接进入登录页面
-        Map<String, dynamic> realData = resp.data["data"];
-        error = new LogicError(resp.data["code"], realData['codeMessage']);
-      } else {
-        /// 失败时  错误提示在 message中时
-        error = new LogicError(resp.data["code"], resp.data["message"]);
-      }
-
-      /// token失效 重新登录  后端定义的code码
-      if (resp.data["code"] == 10000000) {
-//        NavigatorUtils.goPwdLogin(context);
-
-      }
-      if (resp.data["code"] == 80000000) {
-        //操作逻辑
-      }
-    } else {
-      error = unknowError;
-    }
-    return Future.error(error);
-    */
   }
 }
 

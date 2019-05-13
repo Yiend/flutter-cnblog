@@ -1,4 +1,5 @@
 import 'package:cnblog/blocs/home_bloc.dart';
+import 'package:cnblog/common/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:fluintl/fluintl.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -48,6 +49,7 @@ class _MyAppState extends State<MyApp> {
   //初始化 shared_preferences 存储
   void _initAsync() async {
     await SpUtil.getInstance();
+     SpUtil.setBool(CacheKey.is_login, true);
     if (!mounted) return;
     _loadLocale();
   }

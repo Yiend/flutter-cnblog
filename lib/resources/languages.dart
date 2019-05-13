@@ -25,29 +25,21 @@ class LanguageKey {
   static const String tab_statuses_my = "tab_statuses_my";
   static const String tab_statuses_mycomment = "tab_statuses_mycomment";
   static const String tab_statuses_replyMe = "tab_statuses_replyMe";
+ //Questions
+ static const String tab_questions_nosolved = "tab_questions_nosolved";
+ static const String tab_questions_highscore = "tab_questions_highscore";
+ static const String tab_questions_noanswer = "tab_questions_noanswer";
+static const String tab_questions_solved = "tab_questions_solved";
+ static const String tab_questions_myquestion = "tab_questions_myquestion";
 
-  static const String titleBookmarks = 'title_bookmarks';
-  static const String titleCollection = 'title_collection';
-  static const String titleSetting = 'title_setting';
-  static const String titleAbout = 'title_about';
-  static const String titleShare = 'title_share';
-  static const String titleSignOut = 'title_signout';
-  static const String titleLanguage = 'title_language';
-  static const String titleTheme = 'title_theme';
-  static const String titleAuthor = 'title_author';
-  static const String titleOther = 'title_other';
+static const String page_setting = 'page_setting';
+static const String page_about = 'page_about';
 
+static const String save = 'save';
+static const String more = 'more';
 
+static const String page_language = 'page_language';
 
-  static const String save = 'save';
-  static const String more = 'more';
-
-  static const String recRepos = 'rec_repos';
-  static const String recWxArticle = 'rec_wxarticle';
-
-  static const String titleReposTree = 'title_repos_tree';
-  static const String titleWxArticleTree = 'title_wxarticle_tree';
-  static const String titleSystemTree = 'title_system_tree';
 }
 
 

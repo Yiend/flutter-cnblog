@@ -7,6 +7,7 @@ import 'package:rxdart/rxdart.dart';
 import 'package:connectivity/connectivity.dart';
 
 class ApplicationBloc implements BlocBase {
+  
   BehaviorSubject<int> _appEvent = BehaviorSubject<int>();
   Sink<int> get _appEventSink => _appEvent.sink;
   Stream<int> get appEventStream => _appEvent.stream;
@@ -32,10 +33,11 @@ class ApplicationBloc implements BlocBase {
   //   }
   // }
 
+
   @override
   void dispose() {
     _appEvent.close();
-   // _appNetWorkStatus.close();
+    // _appNetWorkStatus.close();
   }
 
   @override

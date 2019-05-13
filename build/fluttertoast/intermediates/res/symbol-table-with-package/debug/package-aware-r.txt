@@ -1,0 +1,5 @@
+io.github.ponnamkarthik.toast.fluttertoast
+drawable toast_bg
+id custom_toast_container
+id text
+layout toast_custom

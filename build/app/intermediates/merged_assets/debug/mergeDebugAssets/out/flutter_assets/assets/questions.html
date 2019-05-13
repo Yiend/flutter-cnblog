@@ -1,30 +1,30 @@
 ﻿<html>
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0,minimum-scale=1.0, user-scalable=no" />
-    <link rel="stylesheet" type="text/css" href="css/default.css" />
-    <script type="text/javascript" src="js/jquery.min.js"></script>
-    <script type="text/javascript" src="js/vue.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="http://127.0.0.1:8080/css/default.css" />
+    <script type="text/javascript" src="http://127.0.0.1:8080/js/jquery.min.js"></script>
+    <script type="text/javascript" src="http://127.0.0.1:8080/js/vue.min.js"></script>
 </head>
 <body>
     <div id="app" v-cloak v-show="hasContent">
-        <h2 class="title">{{ model.Title }}</h2>
-        <div class="authorinfo" v-if="model.QuestionUserInfo">
+        <h2 class="title">{{ model.title }}</h2>
+        <div class="authorinfo" v-if="model.questionUserInfo">
             <span class="avatar-wrapper">
-                <img class="avatar" width="45" height="45" v-bind:src="model.QuestionUserInfo.IconDisplay">
+                <img class="avatar" width="45" height="45" v-bind:src="model.questionUserInfo.iconDisplay">
             </span>
             <div class="authorInfo-content">
-                <div class="authorInfo-name" v-html="model.QuestionUserInfo.UserName"></div>
+                <div class="authorInfo-name" v-html="model.questionUserInfo.userName"></div>
                 <span class="authorInfo-time">
-                    {{ model.QuestionUserInfo.QScoreName }} · {{ model.QuestionUserInfo.QScore }} 园豆 · {{ model.DateDisplay }}
+                    {{ model.questionUserInfo.qScoreName }} · {{ model.questionUserInfo.qScore }} 园豆 · {{ model.dateDisplay }}
                 </span>
             </div>
             <div class="dealflag">
-                <div class="award" v-if="model.Award >0"><img src="./images/ic_gold.png" />{{ model.Award }}</div>
-                <div v-if="model.Award ==0" style="height:13px;"></div>
-                <div class="dealflag1" v-if="model.DealFlag == 1">
+                <div class="award" v-if="model.award >0"><img src="http://127.0.0.1:8080/images/ic_gold.png" />{{ model.award }}</div>
+                <div v-if="model.award ==0" style="height:13px;"></div>
+                <div class="dealflag1" v-if="model.dealFlag == 1">
                     已解决
                 </div>
-                <div class="dealflag-1" v-else-if="model.DealFlag == -1">
+                <div class="dealflag-1" v-else-if="model.dealFlag == -1">
                     已关闭
                 </div>
                 <div class="dealflag0" v-else>
@@ -32,8 +32,8 @@
                 </div>
             </div>
         </div>
-        <div class="content" v-html="model.ContentDisplay"></div>
-        <div class="tags" v-if="model.TagsDisplay"><img src="./images/ic_tab.png" />{{ model.TagsDisplay }}</div>
+        <div class="content" v-html="model.contentDisplay"></div>
+        <div class="tags" v-if="model.tagsDisplay"><img src="http://127.0.0.1:8080/images/ic_tab.png" />{{ model.TagsDisplay }}</div>
         <div class="comments">
             <div class="comment-header">
                 <div class="line"></div>
@@ -43,31 +43,31 @@
             </div>
             <section v-for="item in comments">
                 <div class="comments-item" v-on:click="itemSelected(item)">
-                    <span class="item-avatar"><img class="avatar" width="45" height="45" v-bind:src="item.AnswerUserInfo.IconDisplay" /></span>
+                    <span class="item-avatar"><img class="avatar" width="45" height="45" v-bind:src="item.answerUserInfo.iconDisplay" /></span>
                     <div class="item-authorInfo">
                         <div class="authorInfo-content">
                             <div class="authorInfo-name">
                                 <span class="item-name">
-                                    {{ item.AnswerUserInfo.UserName }}
+                                    {{ item.answerUserInfo.userName }}
                                 </span>
                                 <span class="item-time">
-                                    {{ item.AnswerUserInfo.QScoreName }}   ·  {{ item.AnswerUserInfo.QScore }} 园豆
+                                    {{ item.answerUserInfo.qScoreName }}   ·  {{ item.answerUserInfo.qScore }} 园豆
                                 </span>
                             </div>
-                            <div class="dealflag" v-if="item.IsBest">
+                            <div class="dealflag" v-if="item.isBest">
                                 最佳回答
                             </div>
                         </div>
-                        <div class="item-content" v-html="item.Answer"></div>
+                        <div class="item-content" v-html="item.answer"></div>
                         <div class="item-actions">
-                            <span class="item-time">{{ item.DateDisplay}}</span>
-                            <div class="item-edit" v-if="item.IsLoginUser">
-                                <img src="./images/ic_edit.png" v-on:click.stop="editItem(item)" />
-                                <img src="./images/ic_delete.png" v-on:click.stop="deleteItem(item)" />
+                            <span class="item-time">{{ item.dateDisplay}}</span>
+                            <div class="item-edit" v-if="item.isLoginUser">
+                                <img src="http://127.0.0.1:8080/images/ic_edit.png" v-on:click.stop="editItem(item)" />
+                                <img src="http://127.0.0.1:8080/images/ic_delete.png" v-on:click.stop="deleteItem(item)" />
                             </div>
                             <div class="item-edit">
-                                <img src="./images/ic_reply.png" />
-                                <span v-if="item.CommentCounts>0">{{ item.CommentCounts }}</span>
+                                <img src="http://127.0.0.1:8080/images/ic_reply.png" />
+                                <span v-if="item.commentCounts>0">{{ item.commentCounts }}</span>
                                 <span v-else>回复</span>
                             </div>
                         </div>
@@ -78,7 +78,7 @@
         </div>
         <div class="footer">
             <div class="loading" v-if="loadStatus == 0||loadStatus == 1">
-                <img src="./images/loading.gif" class="loading-img" /><span class="loading-content">正在加载中</span>
+                <img src="http://127.0.0.1:8080/images/loading.gif" class="loading-img" /><span class="loading-content">正在加载中</span>
             </div>
             <div class="nodata" v-else-if="loadStatus == 2">
                 - 还没有回答 -

@@ -5,6 +5,7 @@ INJECTED from D:\MyProject\Android\cnblog\android\app\src\main\AndroidManifest.x
 INJECTED from D:\MyProject\Android\cnblog\android\app\src\main\AndroidManifest.xml:1:1-37:12
 INJECTED from D:\MyProject\Android\cnblog\android\app\src\main\AndroidManifest.xml:1:1-37:12
 MERGED from D:\MyProject\Android\cnblog\android\app\src\main\AndroidManifest.xml:1:1-37:12
+MERGED from [:fluttertoast] D:\MyProject\Android\cnblog\build\fluttertoast\intermediates\merged_manifests\debug\processDebugManifest\merged\AndroidManifest.xml:2:1-7:12
 MERGED from [:shared_preferences] D:\MyProject\Android\cnblog\build\shared_preferences\intermediates\merged_manifests\debug\processDebugManifest\merged\AndroidManifest.xml:2:1-7:12
 MERGED from [:url_launcher] D:\MyProject\Android\cnblog\build\url_launcher\intermediates\merged_manifests\debug\processDebugManifest\merged\AndroidManifest.xml:2:1-14:12
 MERGED from [:sqflite] D:\MyProject\Android\cnblog\build\sqflite\intermediates\merged_manifests\debug\processDebugManifest\merged\AndroidManifest.xml:2:1-7:12
@@ -91,6 +92,8 @@ uses-sdk
 INJECTED from D:\MyProject\Android\cnblog\android\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from D:\MyProject\Android\cnblog\android\app\src\main\AndroidManifest.xml
 INJECTED from D:\MyProject\Android\cnblog\android\app\src\main\AndroidManifest.xml
+MERGED from [:fluttertoast] D:\MyProject\Android\cnblog\build\fluttertoast\intermediates\merged_manifests\debug\processDebugManifest\merged\AndroidManifest.xml:5:5-44
+MERGED from [:fluttertoast] D:\MyProject\Android\cnblog\build\fluttertoast\intermediates\merged_manifests\debug\processDebugManifest\merged\AndroidManifest.xml:5:5-44
 MERGED from [:shared_preferences] D:\MyProject\Android\cnblog\build\shared_preferences\intermediates\merged_manifests\debug\processDebugManifest\merged\AndroidManifest.xml:5:5-44
 MERGED from [:shared_preferences] D:\MyProject\Android\cnblog\build\shared_preferences\intermediates\merged_manifests\debug\processDebugManifest\merged\AndroidManifest.xml:5:5-44
 MERGED from [:url_launcher] D:\MyProject\Android\cnblog\build\url_launcher\intermediates\merged_manifests\debug\processDebugManifest\merged\AndroidManifest.xml:5:5-44

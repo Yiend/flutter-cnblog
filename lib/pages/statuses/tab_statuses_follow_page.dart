@@ -1,8 +1,11 @@
 import 'package:cnblog/blocs/bloc_provider.dart';
 import 'package:cnblog/blocs/statuses_bloc.dart';
+import 'package:cnblog/common/constants.dart';
 import 'package:cnblog/model/statuses_model.dart';
+import 'package:cnblog/utils/sp_util.dart';
 import 'package:cnblog/widgets/refresh_scaffold.dart';
 import 'package:cnblog/widgets/statuses_item.dart';
+import 'package:cnblog/widgets/widget_nologin.dart';
 import 'package:cnblog/widgets/widget_package.dart';
 import 'package:flutter/material.dart';
 import 'package:cnblog/model/enums.dart';
@@ -16,6 +19,10 @@ class StatusesFollowPage extends StatelessWidget {
 
 @override
   Widget build(BuildContext context) {
+    if(SpUtil.getBool(CacheKey.is_login)==false) {
+       return NoLogin(labId: labId);
+    }
+
     RefreshController _controller = new RefreshController();
    final StatusesBloc statusesBloc = BlocProvider.of<StatusesBloc>(context);
 

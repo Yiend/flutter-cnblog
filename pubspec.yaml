@@ -39,6 +39,8 @@ dependencies:
   url_launcher: ^5.0.2
   #网络状态
   connectivity: ^0.4.3+1
+  #吐司
+  fluttertoast: ^3.0.4
 
   # Rx 
   rxdart: ^0.22.0
@@ -91,6 +93,7 @@ flutter:
     - assets/images/icon_password.png
     - assets/images/icon_username.png
     - assets/images/start_bg.jpg
+    - assets/images/no_login.jpg
     - assets/js/jquery.min.js
     - assets/js/vue.min.js
     - assets/articles.html

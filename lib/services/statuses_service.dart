@@ -1,7 +1,8 @@
+import 'package:cnblog/common/constants.dart';
 import 'package:cnblog/model/enums.dart';
 import 'package:cnblog/utils/http_util.dart';
 import 'package:cnblog/model/statuses_model.dart';
-import 'package:cnblog/utils/data_util.dart';
+import 'package:cnblog/utils/sp_util.dart';
 
 class StatusesService {
   /* 
@@ -64,7 +65,7 @@ class StatusesService {
    */
   Future<dynamic> getComments(int id) async {
     var url = "api/statuses/$id/comments";
-    var islogin = await DataUtils.isLogin();
+    var islogin = SpUtil.getBool(CacheKey.is_login);
     
     List<dynamic> modules = [];
 

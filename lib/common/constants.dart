@@ -14,3 +14,38 @@ class Constant {
   static const String questionUrl = "assets/questions.html";
   static const String statuseUrl = "assets/statuses.html";
 }
+
+class HtmlTemplate {
+  static String getScoreName(int score) {
+    if (score > 100000) {
+      return "大牛九级";
+    }
+    if (score > 50000) {
+      return "牛人八级";
+    }
+    if (score > 20000) {
+      return "高人七级";
+    }
+    if (score > 10000) {
+      return "专家六级";
+    }
+    if (score > 5000) {
+      return "大侠五级";
+    }
+    if (score > 2000) {
+      return "老鸟四级";
+    }
+    if (score > 500) {
+      return "小虾三级";
+    }
+    if (score > 200) {
+      return "初学一级";
+    }
+    return "初学一级";
+  }
+}
+
+class CacheKey {
+  static const String is_login = "isLogin";
+  static const String access_token = "access_token";
+}

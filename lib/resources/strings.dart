@@ -28,20 +28,18 @@ class Strings {
         LanguageKey.tab_statuses_my: 'My',
         LanguageKey.tab_statuses_mycomment: 'My Comment',
         LanguageKey.tab_statuses_replyMe: 'Reply Me',
+        //Questions
+        LanguageKey.tab_questions_nosolved: "No solved",
+        LanguageKey.tab_questions_highscore: "High score",
+        LanguageKey.tab_questions_noanswer: "No answer",
+        LanguageKey.tab_questions_solved: "Solved",
+        LanguageKey.tab_questions_myquestion: "My question",
 
-        LanguageKey.titleCollection: 'Collection',
-        LanguageKey.titleSetting: 'Setting',
-        LanguageKey.titleAbout: 'About',
-        LanguageKey.titleShare: 'Share',
-        LanguageKey.titleSignOut: 'Sign Out',
-        LanguageKey.titleLanguage: 'Language',
+        LanguageKey.page_setting: 'Setting',
+        LanguageKey.page_about: 'About',
+        LanguageKey.page_language: 'Language',
         LanguageKey.save: 'Save',
         LanguageKey.more: 'More',
-        LanguageKey.recRepos: 'Reco Repos',
-        LanguageKey.recWxArticle: 'Reco WxArticle',
-        LanguageKey.titleReposTree: 'Repos Tree',
-        LanguageKey.titleWxArticleTree: 'Wx Article',
-        LanguageKey.titleTheme: 'Theme',
       }
     },
     'zh': {
@@ -69,36 +67,21 @@ class Strings {
         LanguageKey.tab_statuses_my: '我的',
         LanguageKey.tab_statuses_mycomment: '我回应',
         LanguageKey.tab_statuses_replyMe: '回复我',
+        //Questions
+        LanguageKey.tab_questions_nosolved: "待解决",
+        LanguageKey.tab_questions_highscore: "高分",
+        LanguageKey.tab_questions_noanswer: "没有答案",
+        LanguageKey.tab_questions_solved: "已解决",
+        LanguageKey.tab_questions_myquestion: "我的问题",
 
-        LanguageKey.titleShare: '分享',
-        LanguageKey.titleSignOut: '注销',
-        LanguageKey.titleLanguage: '多语言',
-        
+        LanguageKey.page_setting: '设置',
+        LanguageKey.page_about: '关于',
+        LanguageKey.page_language: '多语言',
         LanguageKey.save: '保存',
         LanguageKey.more: '更多',
-        LanguageKey.recRepos: '推荐项目',
-        LanguageKey.recWxArticle: '推荐公众号',
-        LanguageKey.titleReposTree: '项目分类',
-        LanguageKey.titleWxArticleTree: '公众号',
-        LanguageKey.titleTheme: '主题',
       },
     }
   };
-
-  //blog
-  static const String blog = "博客";
-  static const String essence = "精华";
-  static const String knowledge = "知识库";
-  //news
-  static const String latestNews = "最新新闻";
-  static const String recommendedNews = "推荐新闻";
-  static const String weekNews = "本周热门";
-  //Statuses
-  static const String allStatuses = "全站";
-  static const String follow = "关注";
-  static const String my = "我的";
-  static const String mycomment = "我回应";
-  static const String replyMe = "回复我";
 
   //菜单
   static final List menuData = [

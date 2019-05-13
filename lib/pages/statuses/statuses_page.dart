@@ -1,6 +1,9 @@
 import 'package:cnblog/components/appbar_gradient.dart';
 import 'package:cnblog/pages/statuses/tab_statuses_all_page.dart';
 import 'package:cnblog/pages/statuses/tab_statuses_follow_page.dart';
+import 'package:cnblog/pages/statuses/tab_statuses_my_page.dart';
+import 'package:cnblog/pages/statuses/tab_statuses_mycomment_page.dart';
+import 'package:cnblog/pages/statuses/tab_statuses_replyme_page.dart';
 import 'package:cnblog/resources/languages.dart';
 import 'package:fluintl/fluintl.dart';
 import 'package:flutter/material.dart';
@@ -55,9 +58,9 @@ class _StatusesPageState extends State<StatusesPage>
         children: <Widget>[
           StatusesAllPage(labId: LanguageKey.tab_statuses_all),
           StatusesFollowPage(labId: LanguageKey.tab_statuses_follow),
-          Container(color: Colors.grey),
-          Container(color: Colors.pink),
-          Container(color: Colors.purple)
+          StatusesMyPage(labId:LanguageKey.tab_statuses_my),
+          StatusesMyCommentPage(labId:LanguageKey.tab_statuses_mycomment),
+          StatusesReplyMePage(labId:LanguageKey.tab_statuses_replyMe)
         ],
       ),
     );

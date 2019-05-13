@@ -29,6 +29,30 @@ class StatusesBloc implements BlocBase {
   int _followingPageIndex = 1;
   List<StatusesModel> _followingList;
 
+  //my
+  BehaviorSubject<List<StatusesModel>> _my =
+      BehaviorSubject<List<StatusesModel>>();
+  Sink<List<StatusesModel>> get _mySink => _my.sink;
+  Stream<List<StatusesModel>> get myStream => _my.stream;
+  int _myPageIndex = 1;
+  List<StatusesModel> _myList;
+
+  //mycomment
+  BehaviorSubject<List<StatusesModel>> _mycomment =
+      BehaviorSubject<List<StatusesModel>>();
+  Sink<List<StatusesModel>> get _mycommentSink => _mycomment.sink;
+  Stream<List<StatusesModel>> get mycommentStream => _mycomment.stream;
+  int _mycommentPageIndex = 1;
+  List<StatusesModel> _mycommentList;
+
+  //replyme
+  BehaviorSubject<List<StatusesModel>> _replyme =
+      BehaviorSubject<List<StatusesModel>>();
+  Sink<List<StatusesModel>> get _replymeSink => _replyme.sink;
+  Stream<List<StatusesModel>> get replymeStream => _replyme.stream;
+  int _replymePageIndex = 1;
+  List<StatusesModel> _replymeList;
+
   //评论
   BehaviorSubject<List<Map>> _statusesComments = BehaviorSubject<List<Map>>();
   Sink<List<Map>> get _statusesCommentsSink => _statusesComments.sink;
@@ -50,6 +74,9 @@ class StatusesBloc implements BlocBase {
     _all.close();
     _following.close();
     _statusesComments.close();
+    _my.close();
+    _mycomment.close();
+    _replyme.close();
   }
 
   @override
@@ -74,13 +101,31 @@ class StatusesBloc implements BlocBase {
         _getData(StatusesType.following, labId, type, page);
         break;
       case LanguageKey.tab_statuses_my:
-        //  _getKbArticleData(labId, type, page);
+        if (_myList == null) {
+          _myList = new List();
+        }
+        if (page == 1) {
+          _myList.clear();
+        }
+        _getData(StatusesType.my, labId, type, page);
         break;
       case LanguageKey.tab_statuses_mycomment:
-        //  _getKbArticleData(labId, type, page);
+        if (_mycommentList == null) {
+          _mycommentList = new List();
+        }
+        if (page == 1) {
+          _mycommentList.clear();
+        }
+        _getData(StatusesType.mycomment, labId, type, page);
         break;
       case LanguageKey.tab_statuses_replyMe:
-        //  _getKbArticleData(labId, type, page);
+        if (_replymeList == null) {
+          _replymeList = new List();
+        }
+        if (page == 1) {
+          _replymeList.clear();
+        }
+        _getData(StatusesType.recentcomment, labId, type, page);
         break;
       default:
         return Future.delayed(new Duration(seconds: 1));
@@ -99,13 +144,13 @@ class StatusesBloc implements BlocBase {
         _page = ++_followingPageIndex;
         break;
       case LanguageKey.tab_statuses_my:
-        //  _getKbArticleData(labId, type, page);
+        _page = ++_myPageIndex;
         break;
       case LanguageKey.tab_statuses_mycomment:
-        //  _getKbArticleData(labId, type, page);
+        _page = ++_mycommentPageIndex;
         break;
       case LanguageKey.tab_statuses_replyMe:
-        //  _getKbArticleData(labId, type, page);
+        _page = ++_replymePageIndex;
         break;
       default:
         break;
@@ -123,13 +168,13 @@ class StatusesBloc implements BlocBase {
         _followingPageIndex = 1;
         break;
       case LanguageKey.tab_statuses_my:
-        //  _getKbArticleData(labId, type, page);
+        _myPageIndex = 1;
         break;
       case LanguageKey.tab_statuses_mycomment:
-        //  _getKbArticleData(labId, type, page);
+        _mycommentPageIndex = 1;
         break;
       case LanguageKey.tab_statuses_replyMe:
-        //  _getKbArticleData(labId, type, page);
+        _replymePageIndex = 1;
         break;
       default:
         break;
@@ -153,10 +198,17 @@ class StatusesBloc implements BlocBase {
               .add(UnmodifiableListView<StatusesModel>(_followingList));
           break;
         case StatusesType.my:
+          _myList.addAll(statuses);
+          _mySink.add(UnmodifiableListView<StatusesModel>(_myList));
           break;
         case StatusesType.mycomment:
+          _mycommentList.addAll(statuses);
+          _mycommentSink
+              .add(UnmodifiableListView<StatusesModel>(_mycommentList));
           break;
         case StatusesType.recentcomment:
+          _replymeList.addAll(statuses);
+          _replymeSink.add(UnmodifiableListView<StatusesModel>(_replymeList));
           break;
         case StatusesType.mention:
           break;
@@ -176,10 +228,13 @@ class StatusesBloc implements BlocBase {
           _followingPageIndex--;
           break;
         case StatusesType.my:
+          _mycommentPageIndex--;
           break;
         case StatusesType.mycomment:
+          _mycommentPageIndex--;
           break;
         case StatusesType.recentcomment:
+          _replymePageIndex--;
           break;
         case StatusesType.mention:
           break;

@@ -1,5 +1,4 @@
 import '../utils/timeline_util.dart';
-import '../utils/data_util.dart';
 
 class StatusesModel {
   int id;

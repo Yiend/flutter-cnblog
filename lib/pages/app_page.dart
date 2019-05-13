@@ -1,7 +1,9 @@
 import 'package:cnblog/blocs/bloc_provider.dart';
 import 'package:cnblog/blocs/home_bloc.dart';
 import 'package:cnblog/blocs/news_bloc.dart';
+import 'package:cnblog/blocs/questions_bloc.dart';
 import 'package:cnblog/blocs/statuses_bloc.dart';
+import 'package:cnblog/pages/questions/questions_page.dart';
 import 'package:cnblog/resources/languages.dart';
 import 'package:fluintl/fluintl.dart';
 import 'package:flutter/material.dart';
@@ -11,6 +13,7 @@ import 'package:cnblog/resources/strings.dart';
 import 'package:cnblog/pages/home/home_page.dart';
 import 'package:cnblog/pages/news/news_page.dart';
 import 'package:cnblog/pages/statuses/statuses_page.dart';
+import 'package:cnblog/pages/user/user_page.dart';
 
 class NavigationIconView {
   final String _title;
@@ -72,8 +75,11 @@ class _AppPageState extends State<AppPage> {
         bloc: StatusesBloc(),
         child: StatusesPage(),
       ),
-      Container(color: Colors.white),
-      Container(color: Colors.grey),
+       BlocProvider<QuestionsBloc>(
+        bloc: QuestionsBloc(),
+        child: QuestionsPage(),
+      ),
+      UserPage(),
     ];
   }
 
