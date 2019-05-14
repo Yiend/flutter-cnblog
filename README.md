@@ -1,7 +1,12 @@
 # Flutter版 博客园第三方 App.
-如何疑问或BUG 请提issue
+如何疑问或BUG 请提 Issue
 
-## Getting Started
+### 注意
+访问博客园API需要申请API KEY,[申请地址](https://oauth.cnblogs.com/)
+
+为了下载项目后能直接运行,已经设置了默认的Key,请申请成功后替换自己的Key.
+
+### 说明
 
 This project is a starting point for a Flutter application.
 
