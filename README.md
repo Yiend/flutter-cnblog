@@ -1,6 +1,5 @@
-# # Flutter版 博客园第三方 App.
-
-A new Flutter project.
+# Flutter版 博客园第三方 App.
+如何疑问或BUG 请提issue
 
 ## Getting Started
 
