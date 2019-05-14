@@ -1,7 +1,9 @@
 # Flutter版 博客园第三方 App.
+
 如何疑问或BUG 请提 Issue
 
 ### 注意
+
 访问博客园API需要申请API KEY,[申请地址](https://oauth.cnblogs.com/)
 
 为了下载项目后能直接运行,已经设置了默认的Key,请申请成功后替换自己的Key.
@@ -24,6 +26,7 @@
 >- |--test
 
 ### 网络数据
+
 本项目使用 Dio 进行网络请求。具体实现在 utils --> http_util
 
 ```dart
@@ -112,4 +115,175 @@ class HttpUtil {
   }
 
 ```
+
+## 说明
+
+文章的详情展示，由于API 返回的不是完整的页面Url，只是文章内容，无法直接用WebView 展示，故自己写了静态html，将内容通过Vue的方式 绑定到页面展示。
+
+又由于静态的html 无法加载样式与JavaScript ,我在其App 内部开启一个web服务器。核心代码如下：
+
+```dart
+void main() async {
+  //开启本地web服务。用于加载样式
+  final server = Jaguar();
+  server.addRoute(serveFlutterAssets());
+  await server.serve(logRequests: true);
+  server.log.onRecord.listen((r) => print(r));
+  // end web server
+  
+  
+  runApp(BlocProvider<ApplicationBloc>(
+    bloc: ApplicationBloc(),
+    child: MyApp()//BlocProvider(child: MyApp(), bloc: HomeBloc()),
+  ));
+}
+
+```
+
+html 部分
+
+```html
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0,minimum-scale=1.0, user-scalable=no" />
+    <link rel="stylesheet" type="text/css" href="http://127.0.0.1:8080/css/default.css" />
+    <script type="text/javascript" src="http://127.0.0.1:8080/js/jquery.min.js"></script>
+    <script type="text/javascript" src="http://127.0.0.1:8080/js/vue.min.js"></script>
+</head>
+<body>
+    <div id="app" v-cloak v-show="hasContent">
+        <h2 class="title">{{ model.title }}</h2>
+        <div class="authorinfo">
+            <div class="authorInfo-content">
+                <span class="authorInfo-time">
+                    发布于 · {{ model.dateDisplay }} · {{ model.diggCount }} 推荐 · {{ model.viewCount }} 阅读
+                </span>
+            </div>
+        </div>
+        <div class="content" v-html="model.body"></div>
+        <div class="comments">
+            <div class="comment-header">
+                <div class="line"></div>
+                <div class="comment">所有评论</div>
+                <div class="line">
+                </div>
+            </div>
+            <section v-for="item in comments">
+                <div class="comments-item">
+                    <span class="item-avatar"><img class="avatar" width="45" height="45" v-bind:src="item.FaceUrl==''?'http://127.0.0.1:8080/images/avatar_placeholder.png':item.faceUrl" /></span>
+                    <div class="item-authorInfo">
+                        <span class="item-name">{{ item.userName }}</span>
+                        <div class="item-content" v-html="item.commentContent"></div>
+                        <div class="item-actions">
+                            <span class="item-time">{{ item.dateDisplay }}</span>
+                            <div class="item-edit" v-if="item.IsLoginUser">
+                                <img src="http://127.0.0.1:8080/images/ic_edit.png" v-on:click="editItem(item)" />
+                                <img src="http://127.0.0.1:8080/images/loading.gif" v-if="item.IsDelete" />
+                                <img src="http://127.0.0.1:8080/images/ic_delete.png" v-on:click="deleteItem(item)" v-else />
+                            </div>
+                        </div>
+                        <span class="item-line"></span>
+                    </div>
+                </div>
+            </section>
+        </div>
+        <div class="footer">
+            <div class="loading" v-if="loadStatus == 0||loadStatus == 1">
+                <img src="http://127.0.0.1:8080/images/loading.gif" class="loading-img" /><span class="loading-content">正在加载中</span>
+            </div>
+            <div class="nodata" v-else-if="loadStatus == 2">
+                - 还没有评论 -
+            </div>
+            <div class="nodata" v-else-if="loadStatus == 3">
+                - 没有更多评论了 -
+            </div>
+            <div class="error" v-else-if="loadStatus === 4||loadStatus === 5">
+                <span class="error-content">好像出现了问题</span>
+                <a href="javascript:void(0)" class="error-btn" v-on:click="reload">重新加载</a>
+            </div>
+        </div>
+    </div>
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+                hasContent: false,
+                model: {},
+                loadStatus: 0,
+                comments: []
+            },
+            methods: {
+                reload: function () {
+                    this.loadStatus = 1;
+                    flutterReload.postMessage("123");
+                },
+                editItem: function (item) {
+                    editItem(item.CommentID);
+                },
+                deleteItem: function (item) {
+                    item.IsDelete = true;
+                    deleteItem(item.CommentID);
+                }
+            }
+        });
+        $(window).scroll(function () {
+            loadReload();
+        });
+        function scrollToComments() {
+            if (app.hasContent) {
+                $("html,body").animate({ scrollTop: $(".comments").offset().top }, 1000);
+            }
+        }
+        function loadReload() {
+            if ($(document).scrollTop() + window.screen.height + 70 >= $(document).height()) {
+                if (app.loadStatus == 0 || app.loadStatus == 2){
+                     flutterReload.postMessage("123");
+                }
+            }
+        }
+        function updateModel(model) {
+            if (!app.hasContent) {
+                app.hasContent = true;
+                loadReload();
+            }
+            app.model = model;
+        }
+        function updateLoadStatus(loadStatus) {
+            app.loadStatus = loadStatus;
+        }
+        function updateComments(list) {
+            app.comments = app.comments.concat(list)
+        }
+        function updateComment(item) {
+            var b = true;
+            if (item.CommentID > 0) {
+                for (var i = 0; i < app.comments.length; i++) {
+                    var element = app.comments[i];
+                    if (element.CommentID == item.CommentID) {
+                        b = false;
+                        element = item;
+                    }
+                }
+            }
+            if (b) {
+                app.comments = app.comments.concat(item);
+            }
+        }
+        function deleteComment(id, isTrue) {
+            for (var i = 0; i < app.comments.length; i++) {
+                var element = app.comments[i];
+                if (element.CommentID == id) {
+                    element.IsDelete = isTrue;
+                    if (isTrue) {
+                        app.comments = app.comments.splice(i, 1);
+                    }
+                }
+            }
+        }
+    </script>
+</body>
+</html>
+
+```
+
 
