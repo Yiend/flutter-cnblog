@@ -322,10 +322,10 @@ IntlUtil.getString(context, Ids.titleHome);
 
 ## 联系我
 
-Email：[wirehomedev@gmail.com](mailto:wirehomedev@gmail.com)
-GitHub: [https://github.com/doCore](https://github.com/doCore)
-简书: [https://www.jianshu.com/u/7262f4954b26](https://www.jianshu.com/u/7262f4954b26)
-知乎: [https://www.zhihu.com/people/wirehome/activities](https://www.zhihu.com/people/wirehome/activities)
+- Email：[wirehomedev@gmail.com](mailto:wirehomedev@gmail.com)
+- GitHub: [https://github.com/doCore](https://github.com/doCore)
+- 简书: [https://www.jianshu.com/u/7262f4954b26](https://www.jianshu.com/u/7262f4954b26)
+- 知乎: [https://www.zhihu.com/people/wirehome/activities](https://www.zhihu.com/people/wirehome/activities)
 
 
 # 如果你不再恐惧，你会做什么？
