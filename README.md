@@ -308,8 +308,24 @@ IntlUtil.getString(context, Ids.titleHome);
 # 关于Android版
 
 ## 截图
+
 ![assets](assets/images/cnblog_start.png)
 ![assets](assets/images/cnblog_home.png)
 ![assets](assets/images/cnblog_bolg_detail.png)
 ![assets](assets/images/cnblog_news.png)
 ![assets](assets/images/cnblog_news_detail.png)
+
+
+# 关于IOS版
+
+太穷，买不起Mac, 没有环境，跑不起来 emmmmmm......嘤嘤嘤~~~
+
+## 联系我
+
+Email：[wirehomedev@gmail.com](mailto:wirehomedev@gmail.com)
+GitHub: [https://github.com/doCore](https://github.com/doCore)
+简书: [https://www.jianshu.com/u/7262f4954b26](https://www.jianshu.com/u/7262f4954b26)
+知乎: [https://www.zhihu.com/people/wirehome/activities](https://www.zhihu.com/people/wirehome/activities)
+
+
+# 如果你不再恐惧，你会做什么？
